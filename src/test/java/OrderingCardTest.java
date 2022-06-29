@@ -19,12 +19,13 @@ public class OrderingCardTest {
     public void shouldSendForm() {
 
         $x("//*[@placeholder=\"Город\"]").setValue("Саратов");
-        $x("// input [@placeholder ='Дата встречи']").setValue("01.07.2022");
+        $x("// input [@placeholder ='Дата встречи']").setValue("02.07.2022");
         $("[data-test-id='name'] input").setValue("Наталия Владимировна Сухова");
         $("[data-test-id='phone'] input").setValue("+79271270335");
         $x("//label [@class =\"checkbox checkbox_size_m checkbox_theme_alfa-on-white\"]").click();
         $x("//span [text() =\"Забронировать\"]").click();
-        $("[data-test-id = notification ]").shouldBe(Condition.text("Успешно! Встреча успешно забронирована на 01.07.2022"), Duration.ofSeconds(15));
+
+        $x("//div [@data-test-id=\"notification\"]").shouldBe(Condition.text("Встреча успешно забронирована на 02.07.2022"), Duration.ofSeconds(15));
     }
 
     @Test
