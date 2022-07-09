@@ -30,7 +30,10 @@ public class OrderingCardTest {
         $x("//span [text() =\"Забронировать\"]").click();
 
         $("[class= notification__title]").shouldBe(Condition.text("Успешно!"), Duration.ofSeconds(15));
-        $("[class= notification__content]").shouldBe(Condition.text("Встреча успешно забронирована на "));
+        $("[class= notification__content]").shouldBe(Condition.text("Встреча успешно забронирована на "),Condition.text(generateDate(3)));
+
+
+
 
     }
 
