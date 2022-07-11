@@ -23,6 +23,7 @@ public class OrderingCardTest {
     public void shouldSendForm() {
 
         $x("//*[@placeholder=\"Город\"]").setValue("Саратов");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $x("// input [@placeholder ='Дата встречи']").setValue(generateDate(4));
         $("[data-test-id='name'] input").setValue("Наталия Владимировна Сухова");
         $("[data-test-id='phone'] input").setValue("+79271270335");
@@ -30,7 +31,7 @@ public class OrderingCardTest {
         $x("//span [text() =\"Забронировать\"]").click();
 
         $("[class= notification__title]").shouldBe(Condition.text("Успешно!"), Duration.ofSeconds(15));
-        $("[class= notification__content]").shouldBe(Condition.text("Встреча успешно забронирована на "),Condition.text(generateDate(3)));
+        $("[class= notification__content]").shouldBe(Condition.text("Встреча успешно забронирована на "),Condition.text(generateDate(4)));
 
 
 
@@ -54,8 +55,7 @@ public class OrderingCardTest {
     public void shouldSendFormWhenDataEqualsCurrent() {
 
         $x("//*[@placeholder=\"Город\"]").setValue("Саратов");
-        $x("//input[@placeholder =\"Дата встречи\"]").doubleClick();
-        $("[data-test-id=date] input").sendKeys(" ");
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $x("//input[@placeholder =\"Дата встречи\"]").setValue(generateDate(0));
         $("[data-test-id='name'] input").setValue("Наталия Владимировна Сухова");
         $("[data-test-id='phone'] input").setValue("+79271270335");
